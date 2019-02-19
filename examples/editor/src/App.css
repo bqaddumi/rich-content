@@ -89,6 +89,17 @@
   height: calc(100% - 52px) !important;
 }
 
+.resizable {
+  display: flex;
+  border: solid 1px #ddd;
+  margin-right: 20px;
+}
+
+.resizable > div {
+  border: solid 1px #ddd;
+  flex: 1;
+}
+
 /*** MOBILE ***/
 
 @media only screen and (max-width: 740px) {
