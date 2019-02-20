@@ -97,7 +97,7 @@
 
 .resizable > div {
   border: solid 1px #ddd;
-  flex: 1;
+  width: 50%;
 }
 
 /*** MOBILE ***/

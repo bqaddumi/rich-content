@@ -6,6 +6,7 @@ import Measure from 'react-measure';
 import { DISPLAY_MODE } from 'wix-rich-content-common';
 import Styles from '../../../../statics/styles/inline-toolbar.scss';
 import ClickOutside from 'react-click-outside';
+import debounce from 'lodash/debounce';
 
 const TOOLBAR_OFFSET = 5;
 
@@ -189,7 +190,7 @@ export default class InlineToolbar extends Component {
       : Math.min(this.scrollContainer.scrollLeft + clientWidth, scrollWidth);
   }
 
-  setToolbarScrollButton = (scrollLeft, scrollWidth, clientWidth) => {
+  setToolbarScrollButton = debounce((scrollLeft, scrollWidth, clientWidth) => {
     if (this.props.isMobile) {
       return;
     }
@@ -201,7 +202,7 @@ export default class InlineToolbar extends Component {
       showLeftArrow: isScroll && scrollLeft === scrollWidth - clientWidth,
       showRightArrow: isScroll && scrollLeft < scrollWidth - clientWidth,
     });
-  };
+  }, 200);
 
   renderToolbarContent() {
     const {

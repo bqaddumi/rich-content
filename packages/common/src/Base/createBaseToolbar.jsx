@@ -15,6 +15,7 @@ import { BUTTONS, BUTTONS_BY_KEY, BlockLinkButton, DeleteButton } from './button
 import Panel from '../Components/Panel';
 import toolbarStyles from '../../statics/styles/plugin-toolbar.scss';
 import buttonStyles from '../../statics/styles/plugin-toolbar-button.scss';
+import debounce from 'lodash/debounce';
 
 const toolbarOffset = 12;
 
@@ -374,7 +375,7 @@ export default function createToolbar({
       };
     };
 
-    setToolbarScrollButton = (scrollLeft, scrollWidth, clientWidth) => {
+    setToolbarScrollButton = debounce((scrollLeft, scrollWidth, clientWidth) => {
       const currentScrollButtonWidth =
         this.state.showLeftArrow || this.state.showRightArrow ? 20 : 0;
       const isScroll = scrollWidth - clientWidth - currentScrollButtonWidth > 8;
@@ -383,7 +384,7 @@ export default function createToolbar({
         showLeftArrow: isScroll && scrollLeft === scrollWidth - clientWidth,
         showRightArrow: isScroll && scrollLeft < scrollWidth - clientWidth,
       });
-    };
+    }, 200);
 
     hidePanels = () => this.setState({ panel: null, inlinePanel: null });
 

@@ -130,7 +130,7 @@ export class Editor extends Component {
     };
     const { MobileToolbar, TextToolbar } = this.state;
     return (
-      <>
+      <div>
         {MobileToolbar && <MobileToolbar />}
         {TextToolbar && <TextToolbar />}
         <RichContentEditor
@@ -160,7 +160,7 @@ export class Editor extends Component {
             <RichContentEditorModal modalsMap={ModalsMap} {...this.state.modalProps} />
           )}
         </ReactModal>
-      </>
+      </div>
     );
   }
 }
