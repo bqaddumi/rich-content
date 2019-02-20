@@ -58,6 +58,7 @@
   flex: 1;
   flex-direction: row;
   flex-wrap: nowrap;
+  justify-content: space-between;
 }
 
 .column {
@@ -65,9 +66,13 @@
   padding: 0 10px;
 }
 
+.column.side {
+  max-width: 750px;
+  flex: 1;
+}
+
 .column.main {
   max-width: 100%;
-  width: 740px;
   margin: 0 auto;
 }
 
@@ -98,6 +103,10 @@
 .resizable > div {
   border: solid 1px #ddd;
   width: 50%;
+}
+
+.DraftEditor-root, div[class^='rich-content-viewer__wrapper'] {
+  overflow: auto;
 }
 
 /*** MOBILE ***/

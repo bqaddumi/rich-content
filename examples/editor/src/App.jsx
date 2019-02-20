@@ -43,6 +43,7 @@ class App extends Component {
     this.setState({
       lastSave: new Date(),
       editorState,
+      viewerState: convertToRaw(editorState.getCurrentContent()),
     });
   };
 
@@ -118,9 +119,14 @@ class App extends Component {
           <div className="content">
             {this.state.mounted && (
               <div className="columns">
-                <Resizable defaultSize={{width:'100%'}} className={"resizable"}>
+                <Resizable
+                  onResize={(event, direction, { clientWidth }) =>
+                    this.setState({ contentWidth: clientWidth - 2 })
+                  }
+                  defaultSize={{ width: '60%' }}
+                  className={'resizable'}
+                >
                   <Editor
-                    ref={this.setEditor}
                     onChange={this.onEditorChange}
                     editorState={this.state.editorState}
                     readOnly={this.state.readOnly}
@@ -138,7 +144,7 @@ class App extends Component {
                     <RichContentRawDataViewer
                       onChange={content => this.setState({ content })}
                       content={convertToRaw(this.state.editorState.getCurrentContent())}
-                      width="740px"
+                      width={'100%'}
                     />
                     <button
                       className="raw_input_button submit"
