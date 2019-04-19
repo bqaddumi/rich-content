@@ -12,7 +12,7 @@ import { createGiphyPlugin } from 'wix-rich-content-plugin-giphy';
 import { createHeadersMarkdownPlugin } from 'wix-rich-content-plugin-headers-markdown';
 import { createMapPlugin } from 'wix-rich-content-plugin-map';
 import { createFileUploadPlugin } from 'wix-rich-content-plugin-file-upload';
-
+import { createIframelyPlugin } from 'wix-rich-content-plugin-iframely';
 import 'wix-rich-content-common/dist/styles.min.css';
 import 'wix-rich-content-editor/dist/styles.min.css';
 // import 'wix-rich-content-plugin-code-block/dist/styles.min.css';
@@ -44,6 +44,7 @@ const plugins = [
   createHeadersMarkdownPlugin,
   createMapPlugin,
   createFileUploadPlugin,
+  createIframelyPlugin
 ];
 
 export default plugins;
