@@ -5,10 +5,12 @@ node_modules
 lerna-debug.log
 yarn-error.log
 yarn.lock
+packages/**/package-lock.json
 target
 maven
 stats.html
 .env
+applitools.config.js
 
 #Webstorm
 **/.idea/*
@@ -21,3 +23,13 @@ stats.html
 
 .history/**
 *.todo
+
+#Tests
+**/*.diff.png
+**/*.actual.png
+e2e/cypress/fixtures
+e2e/cypress/videos
+e2e/cypress/screenshots
+e2e/cypress/snapshots/All\sSpecs
+e2e/test-env/report.*.json
+tags

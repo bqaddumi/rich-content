@@ -2,8 +2,7 @@
 const execSync = require('child_process').execSync;
 const chalk = require('chalk');
 const semver = require('semver');
-const memoize = require('lodash/memoize');
-const get = require('lodash/get');
+const { get, memoize } = require('lodash');
 const lernaPackages = require('lerna-packages');
 
 const LATEST_TAG = 'latest';
@@ -102,8 +101,8 @@ function publishPackages() {
 function run() {
   let skip;
   const { FORCE_PUBLISH, TRAVIS_BRANCH, CI } = process.env;
-  if (TRAVIS_BRANCH !== 'master' && !FORCE_PUBLISH) {
-    skip = 'Not on master branch';
+  if (TRAVIS_BRANCH !== 'release' && !FORCE_PUBLISH) {
+    skip = 'Not on release branch';
   } else if (!CI) {
     skip = 'Not in CI';
   }
