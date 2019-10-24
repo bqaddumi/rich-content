@@ -6,6 +6,12 @@ const chalk = require('chalk');
 const isEmpty = require('lodash').isEmpty;
 
 const baseDir = 'packages/';
+const excludedDirs = ['e2e'];
+
+const executeCommand = command => {
+  console.log(chalk.blue(`Executing: ${command}`));
+  execSync(command, { stdio: 'inherit' });
+};
 
 const dirsWithModifiedFiles = execSync('git status --porcelain=1')
   .toString()
@@ -20,14 +26,16 @@ const dirsWithModifiedFiles = execSync('git status --porcelain=1')
       fullFileDirSepIndex > -1 ? fullFileDir.substring(0, fullFileDirSepIndex) : fullFileDir;
     return baseFileDir;
   })
-  .filter(s => !isEmpty(s));
+  .filter(s => !isEmpty(s))
+  .filter(s => !excludedDirs.includes(s));
 
 if (dirsWithModifiedFiles.length) {
   new Set(dirsWithModifiedFiles).forEach(dir => {
     try {
-      const npmTestCommand = `npm test --prefix ${baseDir}${dir}`;
-      console.log(chalk.blue(`Executing: ${npmTestCommand}`));
-      execSync(npmTestCommand, { stdio: 'inherit' });
+      const npmLintCommand = `npm run lint --prefix ${baseDir}${dir}/web`;
+      executeCommand(npmLintCommand);
+      const npmTestCommand = `npm test --prefix ${baseDir}${dir}/web`;
+      executeCommand(npmTestCommand);
     } catch (error) {
       console.error(chalk.red(`\nError: ${error.message}`));
       process.exit(1);
