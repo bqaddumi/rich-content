@@ -10,7 +10,6 @@ import { InsertPluginIcon, InsertPluginMobileIcon } from '../icons';
 import Arrow from './arrow';
 
 export default ({ helpers, t, settings, isMobile }) => {
-  console.log(isMobile);
   return [
     {
       type: 'modal',

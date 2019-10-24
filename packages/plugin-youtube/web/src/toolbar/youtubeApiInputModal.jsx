@@ -52,6 +52,7 @@ export default class YoutubeApiInputModal extends Component {
   };
 
   onItemClickedHandler = url => {
+    const { isMobile } = this.props;
     this.setState({ selectedVideoUrl: url });
     if (!isMobile) {
       this.updateComponentData(url);
@@ -116,5 +117,6 @@ YoutubeApiInputModal.propTypes = {
   helpers: PropTypes.object,
   pubsub: PropTypes.object,
   onConfirm: PropTypes.func,
+  isMobile: PropTypes.bool,
   t: PropTypes.func,
 };
